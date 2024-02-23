@@ -1,0 +1,170 @@
+# 5th week solutions
+
+# The solution of the 1 question
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+my_rectangle = Rectangle(5, 7)
+area = my_rectangle.area()
+print("Area:", area)
+
+perimeter = my_rectangle.perimeter()
+print("Perimeter:", perimeter)
+
+# The solution of the 2 question
+class School:
+    teachers = []
+    students = []
+
+    def __init__(self, name, founding_year):
+        self.name = name
+        self.founding_year = founding_year
+
+    def add_new_student(self):
+        student_name = input('Enter the student\'s name: ')
+        classroom = input('Enter the student\'s classroom: ')
+        student = {'student name': student_name, 'classroom': classroom}
+        self.students.append(student)
+
+    def add_new_teacher(self):
+        teacher_name = input('Enter the teacher\'s name: ')
+        subject = input('Enter the teacher\'s subject: ')
+        teacher = {'teacher name': teacher_name, 'subject': subject}
+        self.teachers.append(teacher)
+
+    def display_student_list(self):
+        for student in self.students:
+            print(student)
+
+    def display_teacher_list(self):
+        for teacher in self.teachers:
+            print(teacher)
+
+    def __str__(self):
+        return f"School: {self.name}, Founding Year: {self.founding_year}"
+
+my_school = School("High School", 2000)
+print(my_school)
+
+my_school.add_new_student()
+my_school.add_new_teacher()
+
+my_school.display_student_list()
+my_school.display_teacher_list()
+
+# THe solution of the 3 question
+class Shape:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+
+    def calculate_area(self):
+        rectangle_area = self.width * self.height
+        return rectangle_area
+
+class Square(Shape):
+    def __init__(self, side_length):
+        super().__init__(side_length, side_length)
+
+    def calculate_area(self):
+        square_area = self.width * self.height
+        return square_area
+
+rectangle = Rectangle(4, 6)
+square = Square(5)
+
+rectangle_area = rectangle.calculate_area()
+square_area = square.calculate_area()
+
+print(rectangle_area)
+print(square_area)
+
+# The solution of the 4 question
+class Vehicle:
+    def __init__(self, brand, model, production_year):
+        self.brand = brand
+        self.model = model
+        self.production_year = production_year
+
+    def __str__(self):
+        return f"{self.production_year} {self.brand} {self.model}"
+
+class SUV(Vehicle):
+    def __init__(self, brand, model, production_year, four_wheel_drive):
+        super().__init__(brand, model, production_year)
+        self.four_wheel_drive = four_wheel_drive
+
+    def __str__(self):
+        return f"{super().__str__()}, 4WD: {self.four_wheel_drive}"
+
+class SportsCar(Vehicle):
+    def __init__(self, brand, model, production_year, maximum_speed):
+        super().__init__(brand, model, production_year)
+        self.maximum_speed = maximum_speed
+
+    def __str__(self):
+        return f"{super().__str__()}, Max Speed: {self.maximum_speed} km/h"
+
+example1 = Vehicle('Toyota', 'Corolla', 2015)
+example2 = SUV('Toyota', 'Rav4', 2015, True)
+example3 = SportsCar('Ferrari', '488 GTB', 2019, 330)
+
+print("Example 1:", example1)
+print("Example 2:", example2)
+print("Example 3:", example3)
+
+# The solution of the 5 question
+class Customer:
+    def __init__(self, name, surname, tc_identity, phone):
+        self.name = name
+        self.surname = surname
+        self.tc_identity = tc_identity
+        self.phone = phone
+
+    def display_info(self):
+        print(f"Customer Information:\nName: {self.name}\nSurname: {self.surname}\nTC Identity: {self.tc_identity}\nPhone: {self.phone}")
+
+
+class Account(Customer):
+    def __init__(self, customer, account_number, balance=0):
+        super().__init__(customer.name, customer.surname, customer.tc_identity, customer.phone)
+        self.account_number = account_number
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Amount of {amount} deposited into the account. New balance: {self.balance}")
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("Invalid withdrawal amount.")
+        elif self.balance >= amount:
+            self.balance -= amount
+            print(f"Amount of {amount} withdrawn from the account. New balance: {self.balance}")
+        else:
+            print("Insufficient balance. The transaction could not be completed.")
+
+    def display_balance(self):
+        print(f"Account Balance: {self.balance}")
+
+
+customer = Customer("Ali", "Er", "1234567890", "555-1234")
+account = Account(customer, "123456", 2500)
+
+customer.display_info()
+account.deposit(500)
+account.withdraw(200)
+account.withdraw(-50) 
+account.display_balance()
