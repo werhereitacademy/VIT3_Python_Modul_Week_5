@@ -1,0 +1,243 @@
+"""Q#1:Create a Python class called "Rectangle" that represents a rectangle. The Rectangle class should have the following properties and methods:
+
+Properties:
+width (an integer)
+height (an integer)
+Methods:
+area(self): A method that calculates and returns the area of a rectangle.
+perimeter(self): A method that calculates and returns the perimeter of a rectangle.
+Create an instance of the Rectangle class, set its width to 5 and height to 7, then print its area and perimeter."""
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * self.width + 2*self.height
+
+# let's make an instance of the class
+rectangle = Rectangle(5, 7)
+
+# Print the perimeter and area
+print("Area of the rectangle:", rectangle.area())
+print("Perimeter of the rectangle:", rectangle.perimeter())
+
+"""Q#2: Create a "School" class in Python. This class should have the following features and functionality:
+Features:
+"name"
+"foundation_year"
+"students"
+"teachers"
+Methods:
+add_new_student(self, student_name, class): A method used to add a new student to the school. It takes the student's name and class and adds it to the "students" list.
+add new_teacher(self, teacher_name, branch): A method used to add a new teacher to the school. It takes the teacher's name and major and adds it to the "teachers" dictionary.
+view_student_list(self): A method used to display the list of students enrolled in the school. List student names and classes.
+view_teacher_list(self): A method used to display the list of teachers working at the school. List teacher names and majors."""
+class School:
+    def __init__(self, name, foundation_year):
+        self.name = name
+        self.foundation_year = foundation_year
+        self.students = []
+        self.teachers = {}
+
+    def add_new_student(self, student_name, class_name):
+        self.students.append((student_name, class_name))
+
+    def add_new_teacher(self, teacher_name, branch):
+        self.teachers[teacher_name] = branch
+
+    def view_student_list(self):
+        print("List of students enrolled in", self.name, ":")
+        for student in self.students:
+            print("Name:", student[0], "- Class:", student[1])
+
+    def view_teacher_list(self):
+        print("List of teachers working at", self.name, ":")
+        for teacher, branch in self.teachers.items():
+            print("Name:", teacher, "- Major:", branch)
+
+# Create an instance of the School class
+school = School("South Park Elementary", 1990)
+
+# Add students and teachers
+school.add_new_student("Eric", "10th Grade")
+school.add_new_student("Kyle", "11th Grade")
+school.add_new_student("Butters", "9th Grade")
+
+school.add_new_teacher("Herbert", "Mathematics")
+school.add_new_teacher("Garrison", "Physics")
+
+# View student and teacher lists
+school.view_student_list()
+print("\n")
+school.view_teacher_list()
+
+"""Q#3: Create a "Shape" class. Under this class, create two subclasses, the "Rectangle" and "Square" classes.
+
+Let the "shape" class have two properties: "width" and "height."
+Let the "Rectangle" class inherit from the "Shape" class and add an additional "calculate_area()" method.
+Let the "Square" class inherit from the "Shape" class and calculate the area of the square using the same "area_calculate()" method.
+Create a "Rectangle" and a "Square" instance, determine the width and height of each, and calculate the area of each and print the results."""
+
+class Shape:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+
+    def calculate_area(self):
+        return self.width * self.height
+
+
+class Square(Shape):
+    def __init__(self, side_length):
+        super().__init__(side_length, side_length)
+
+    def calculate_area(self):
+        return self.width * self.height
+
+
+# Create instances of Rectangle and Square
+rectangle = Rectangle(5, 7)
+square = Square(5)
+
+# Calculate area of Rectangle and Square
+rectangle_area = rectangle.calculate_area()
+square_area = square.calculate_area()
+
+# Print the results
+print("Area of Rectangle:", rectangle_area)
+print("Area of Square:", square_area)
+
+"""Q#4: Create a "Vehicle" class in Python. Make sure this class has the following properties:
+Features:
+"brand" (brand of the vehicle)
+"model" (Model of vehicle)
+"year" (Vehicle's production year)
+Create a "Vehicle" class and create two derived subclasses, the "Off-Road Vehicle" (SUV) and "SportsCar" classes.
+Let the "All-Terrain Vehicle" class inherit from the "Vehicle" class and add an additional "four_wheel drive" feature.
+Let the "SportCar" class inherit from the "Vehicle" class and add a "max_speed" property.
+Create an instance of each class, determine its properties, and write a program to display these properties.
+​"""
+class Vehicle:
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+
+
+class OffRoadVehicle(Vehicle):
+    def __init__(self, brand, model, year, four_wheel_drive):
+        super().__init__(brand, model, year)
+        self.four_wheel_drive = four_wheel_drive
+
+
+class SportsCar(Vehicle):
+    def __init__(self, brand, model, year, max_speed):
+        super().__init__(brand, model, year)
+        self.max_speed = max_speed
+
+
+# Create instances of Vehicle, OffRoadVehicle, and SportsCar
+vehicle = Vehicle("Toyota", "Corolla", 2005)
+offroad_vehicle = OffRoadVehicle("Jeep", "Wrangler", 2019, True)
+sports_car = SportsCar("Maseratti", "488 GTB", 2022, 330)
+
+# Display properties of each vehicle
+print("Vehicle:")
+print("Brand:", vehicle.brand)
+print("Model:", vehicle.model)
+print("Year:", vehicle.year)
+print("\n")
+
+print("Off-Road Vehicle (SUV):")
+print("Brand:", offroad_vehicle.brand)
+print("Model:", offroad_vehicle.model)
+print("Year:", offroad_vehicle.year)
+print("Four Wheel Drive:", offroad_vehicle.four_wheel_drive)
+print("\n")
+
+print("Sports Car:")
+print("Brand:", sports_car.brand)
+print("Model:", sports_car.model)
+print("Year:", sports_car.year)
+print("Max Speed:", sports_car.max_speed, "km/h")
+
+"""Q#5: Create a "Customer" class and an "Account" class. Let the "Account" class inherit from the "Customer" class and represent a customer's bank account information.
+Customer Class Features:
+"name" (customer name)
+"surname" (customer surname)
+"rot_identification" (customer TR ID number)
+"phone" (customer phone number)
+Account Class Features:
+"customer" (a Customer object)
+"account_number" (account number)
+"balance" (account balance)
+Customer Class Method:
+"display_information()": Displays the customer's name, surname, TR ID number and telephone number.
+Account Class Methods:
+"deposit_money(self, amount)": A method that deposits a certain amount of money into the account.
+"money_check(self, amount)": A method that withdraws a certain amount of money from the account. However, if there is not enough balance in the account, the transaction should not occur and a message should be displayed.
+"display_balance()": A method that displays the account balance.
+Create these two classes, then create a Customer object and an Account object, add the customer information to the Account object, and perform account operations and view the results."""
+
+class Customer:
+    def __init__(self, name, surname, rot_identification, phone):
+        self.name = name
+        self.surname = surname
+        self.rot_identification = rot_identification
+        self.phone = phone
+
+    def display_information(self):
+        print("Customer Information:")
+        print("Name:", self.name)
+        print("Surname:", self.surname)
+        print("TR ID Number:", self.rot_identification)
+        print("Phone Number:", self.phone)
+
+
+class Account(Customer):
+    def __init__(self, customer, account_number, balance=0):
+        super().__init__(customer.name, customer.surname, customer.rot_identification, customer.phone)
+        self.account_number = account_number
+        self.balance = balance
+
+    def deposit_money(self, amount):
+        self.balance += amount
+        print(f"{amount} TL has been deposited into the account.")
+
+    def money_check(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            print(f"{amount} TL has been withdrawn from the account.")
+        else:
+            print("Insufficient balance.")
+
+    def display_balance(self):
+        print("Current Balance:", self.balance, "TL")
+
+
+# Create a Customer
+customer = Customer("Basri", "Özakıncı", "32066548896", "252-612-26-58")
+
+# Create an Account object and associate it with the Customer
+account = Account(customer, "52658745", balance=1859)
+
+# Display customer information
+customer.display_information()
+
+# Perform account operations
+account.deposit_money(500)
+account.money_check(200)
+account.money_check(2000)
+
+# Display account balance
+account.display_balance()
+
