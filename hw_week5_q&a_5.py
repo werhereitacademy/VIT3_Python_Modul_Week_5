@@ -5,36 +5,41 @@ class Customer:
         self.tckn = tckn
         self.phone = phone
 
-    # def __str__(self):
-    #     self.var = (f"Customer Information\n"
-    #                 f"--------------------\n"
-    #                 f"Name    : {self.name}\n"
-    #                 f"Surname : {self.surname}\n"
-    #                 f"TCKN    : {self.tckn}\n"
-    #                 f"Phone   : {self.phone}\n")
-    #     return self.var
+    def __str__(self):
+        self.var = (f"Name          : {self.name}\n"
+                    f"Surname       : {self.surname}\n"
+                    f"TCKN          : {self.tckn}\n"
+                    f"Phone         : {self.phone}")
+        return self.var
 
     def show_info(self):
         return (f"Customer Information\n"
                 f"--------------------\n"
-                f"Name    : {self.name}\n"
-                f"Surname : {self.surname}\n"
-                f"TCKN    : {self.tckn}\n"
-                f"Phone   : {self.phone}\n")
+                f"Name          : {self.name}\n"
+                f"Surname       : {self.surname}\n"
+                f"TCKN          : {self.tckn}\n"
+                f"Phone         : {self.phone}")
 
 
 class Account(Customer):
-    def __init__(self, name, surname, tckn, phone, customer, account_number, balance):
-        super().__init__(name, surname, tckn, phone)
+    def __init__(self, customer, account_number, balance):
+        super().__init__(customer.name, customer.surname, customer.tckn, customer.phone)
         self.customer = customer
         self.account_number = account_number
         self.balance = balance
 
-    # def __str__(self):
-    #     super().__str__()
-    #     return self.var + (f"Customer      : {self.customer}\n"
-    #                        f"Account Number: {self.account_number}\n"
-    #                        f"Balance       : {self.balance}\n")
+    def __str__(self):
+        super().__str__()
+        return (f"{self.customer}\n"
+                f"Account Number: {self.account_number}\n"
+                f"Balance       : {self.balance}\n")
+
+    def show_info(self):
+        return (f"Account Information\n"
+                f"-------------------\n"
+                f"{self.customer}\n"
+                f"Account Number: {self.account_number}\n"
+                f"Balance       : {self.balance}\n")
 
     def deposit(self, amount):
         if not amount < 0:
@@ -58,9 +63,12 @@ class Account(Customer):
 
 if __name__ == '__main__':
     customer1 = Customer('Fatih', 'BUYUKAKCALI', '12345678910', '+906982919295')
-    account1 = Account(customer1.name, customer1.surname, customer1.tckn, customer1.phone, customer1, 'NL123456', 1000)
+    account1 = Account(customer1, 'NL123456', 1000)
 
     # Show customer information
+    print(customer1.show_info())
+
+    # Show account information
     print(account1.show_info())
 
     # Starting balance
