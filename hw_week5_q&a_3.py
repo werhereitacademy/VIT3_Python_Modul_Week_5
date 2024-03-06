@@ -3,10 +3,12 @@ class Shape:
         self.width = width
         self.height = height
 
-
-class Rectangle(Shape):
     def cal_area(self):
         return self.width * self.height
+
+
+class Rectangle(Shape):
+    pass
 
 
 class Square(Shape):
@@ -20,7 +22,7 @@ class Square(Shape):
 if __name__ == '__main__':
     r1 = Rectangle(5, 6)
     sq1 = Square(5, 6)
-    sq2 = Square(7,7)
+    sq2 = Square(7, 7)
 
     print(f'The area of the rectangle named r1 is: {r1.cal_area()}')
 
